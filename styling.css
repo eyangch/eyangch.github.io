@@ -1,0 +1,34 @@
+@keyframes flyfrombot{
+    from{margin-top: 100%;}
+    to{margin-top: 0%;}
+}
+
+
+.navtra{
+    background: transparent;
+}
+
+.ba1{
+    position: relative;
+    min-height: 400px;
+    z-index: -10;
+    background: linear-gradient(to bottom left, Aquamarine 0%, Aqua 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 80%);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 80%);
+}
+
+.ba2{
+    position: relative;
+    min-height: 400px;
+    margin-top: -2%;
+    padding: 1px;
+    z-index: -9;
+    background: linear-gradient(to bottom right, LightSkyBlue 0%, LightPink 100%);
+    -webkit-clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 20%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+body{
+    text-align: center;
+    cursor: url(cursor.png), pointer;
+}
