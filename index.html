@@ -14,15 +14,21 @@
     <body>
         <div class="ba1">
             <div class="container">
-            <nav class="navbar navbar-light navtra">
+            <nav class="navbar navbar-expand-lg navbar-light navtra">
                 <a class="navbar-brand" href="index.html">
                     Eyangch
                 </a>
-                
+                <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navstuff" aria-controls="navstuff" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navstuff">
+                    <div class="navbar-nav">
+                    </div>
+                </div>
             </nav>
             </div>
             <p><br></p>
-            <div class="flyfrombot">
+            <div id="fly1" class="text-center">
                 <h1>Welcome to my Website!</h1>
                 <h3>It is still under development</h3>
                 <h3> visit my github <a href="https://github.com/eyangch">here</a> !</h3>
@@ -30,12 +36,32 @@
         </div>
         <div class="gap"></div>
         <div class="ba2">
-            <div style="position: absolute; top: 50%; width: 99%;" class="flyfrombotd1">
+            <div style="position: absolute; top: 50%; width: 99%;" id="fly2" class="text-center">
                 <h2>
                     Hope you enjoyed!
                 </h2>
             </div>
         </div>
+        <script type="text/javascript">
+        function addan(elname, anname){
+            var e = document.getElementById(elname);
+            var loaded = false;
+            if(!e.classList.contains(anname)){
+                var top = e.getBoundingClientRect().top;
+                var screen = window.innerHeight;        // detect if scrolled to screen
+                if(top < screen){
+                    e.classList.add(anname);
+                    loaded = true;
+                }
+            }
+        }
+        addan("fly1", "flyb");
+        addan("fly2", "flybd1");  //first with delay
+        window.onscroll = function(){
+            addan("fly1", "flyb"); // have to scroll no delay
+            addan("fly2", "flyb");
+        }
+        </script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
