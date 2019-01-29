@@ -9,11 +9,11 @@
     100%{margin-top: 0%; opacity: 1}
 }
 
-.flyfrombot{
+.flyb{
     animation: flyfrombot 1s ease-out;
 }
 
-.flyfrombotd1{
+.flybd1{
     animation: flyfrombotd1 1s ease-out;
 }
 
@@ -50,6 +50,5 @@
 }
 
 body{
-    text-align: center;
     cursor: url(cursor.png), pointer;
 }
