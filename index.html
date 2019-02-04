@@ -50,9 +50,9 @@
             var e = document.getElementById(elname);
             var loaded = false;
             if(!e.classList.contains(anname)){
-                var top = e.getBoundingClientRect().top;
+                var bottom = e.getBoundingClientRect().bottom;
                 var screen = window.innerHeight;        // detect if scrolled to screen
-                if(top < screen){
+                if(bottom < screen){
                     e.classList.add(anname);
                     loaded = true;
                 }
