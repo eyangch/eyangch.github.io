@@ -9,6 +9,10 @@
     100%{margin-top: 0%; opacity: 1}
 }
 
+.transparent{
+    opacity: 0;    
+}
+
 .flyb{
     animation: flyfrombot 1s ease-out;
 }
