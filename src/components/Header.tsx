@@ -22,7 +22,7 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({ link, text, transition }) => {
         }
     };
 
-    const isCurrentLink: boolean = (window.location.pathname == link);
+    const isCurrentLink: boolean = (window.location.href.split("/").pop() == link);
     const doTransition: boolean = (!isCurrentLink && transition);
 
     return (
@@ -34,10 +34,10 @@ const Header: React.FC = () => {
 	return (
         <div className="absolute w-full">
             <div className="flex ml-auto mr-auto mt-2 sm:w-xl w-sm justify-center">
-                <HeaderLink link="/" text="Home" transition={true} />
-                <HeaderLink link="/projects" text="Projects" transition={true} />
-                <HeaderLink link="/courses" text="Courses" transition={true} />
-                <HeaderLink link="/eric_yang_resume.pdf" text="Resume" transition={false} />
+                <HeaderLink link="" text="Home" transition={true} />
+                <HeaderLink link="projects" text="Projects" transition={true} />
+                <HeaderLink link="courses" text="Courses" transition={true} />
+                <HeaderLink link="eric_yang_resume.pdf" text="Resume" transition={false} />
             </div>
         </div>
 	);
