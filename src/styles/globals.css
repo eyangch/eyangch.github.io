@@ -1,0 +1,24 @@
+@import 'tailwindcss';
+
+body {
+    font-family: "Onest", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+::view-transition-old(root) {
+    animation: fade 0.3s ease;
+}
+::view-transition-new(root) {
+    animation: appear 0.3s ease;
+}
+
+@keyframes fade {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+@keyframes appear {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
