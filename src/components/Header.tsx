@@ -26,7 +26,7 @@ const HeaderLink: React.FC<HeaderLinkProps> = ({ link, text, transition }) => {
     const doTransition: boolean = (!isCurrentLink && transition);
 
     return (
-        <a className={`underline p-4 ${isCurrentLink ? "font-bold" : "font-normal"}`} href={link} onClick={doTransition ? handleClick : ()=>{}}>{text}</a>
+        <a className={`underline p-4 ${isCurrentLink ? "font-bold" : "font-normal"}`} href={transition ? `/#/${link}` : link} onClick={doTransition ? handleClick : ()=>{}}>{text}</a>
     )
 };
 
