@@ -39,10 +39,10 @@ const Projects: React.FC = () => {
                 </div>
 
                 <SingleProject 
-                    name="Cursed QWOP" 
-                    url="https://github.com/eyangch/cursed-game/"
+                    name="Hallucinate" 
+                    url="https://github.com/eyangch/hallucinate/"
                     img={cursed_qwop}>
-                    Simulating the video game QWOP in realtime on the browser using neural networks. Uses an autoencoder to compress gamestates and an LSTM to predict future states. Noise is added during training to improve stability. Play the game <a className="underline" href="https://eyangch.github.io/cursed-game/qwop/">here</a>!
+                    Simulating the video game QWOP in realtime on the browser using neural networks. Uses an autoencoder to compress gamestates and an LSTM to predict future states. Noise is added during training to improve stability. Play the game <a className="underline" href="https://eyangch.github.io/hallucinate/">here</a>!
                 </SingleProject>
 
                 <SingleProject 
