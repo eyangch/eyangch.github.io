@@ -4,10 +4,12 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import * as THREE from 'three';
 
-const Model: React.FC = () => {
-    const [targetPos, setTargetPos] = useState([0, 0]);
+type ModelProps = {
+    scene: THREE.Group
+}
 
-    const { scene } = useGLTF("/smile.gltf");
+const Model: React.FC<ModelProps> = ({ scene }) => {
+    const [targetPos, setTargetPos] = useState([0, 0]);
 
     useEffect(() => {
         scene.traverse((child) => {
@@ -38,11 +40,12 @@ const Model: React.FC = () => {
 };
 
 const Smile: React.FC = () => {
-    
+    const { scene } = useGLTF("/smile.gltf");
+    const clonedScene = scene.clone();
     return (
         <Canvas className="w-full h-full" camera={{ position: [0, 0, 80], fov: 50 }}>
             <ambientLight intensity={2} />
-            <Model />
+            <Model scene={clonedScene} />
         </Canvas>
     );
 };

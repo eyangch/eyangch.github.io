@@ -4,7 +4,7 @@ import Smile from "../components/Smile.tsx";
 const Home: React.FC = () => {
 
 	return (
-		<div className="flex h-screen">
+		<div className="flex h-full font-[Onest]">
 			<div className="flex flex-col m-auto sm:w-2xl w-sm sm:p-12 p-8 rounded-lg bg-blue-300">
 				<div className="flex flex-row shrink-0">
 					<div className="flex flex-col mt-4 mb-4">
@@ -21,7 +21,7 @@ const Home: React.FC = () => {
 				</div>
 				<div className="mt-3 mb-3 text-wrap w-full">
 					<p className="mt-4">
-						Hello! I'm an undergrad at MIT, studying CS. This summer, I'm going to be in NYC working at <a className="underline" href="https://withtandem.com/">Tandem</a> as an Engineering Intern. My current interests revolve around low-level stuff, algorithms, ML, and any intersection of the three. 
+						Hello! I'm an undergrad at MIT, studying CS. Last summer, I'm was in NYC working at <a className="underline" href="https://withtandem.com/">Tandem</a> as an Engineering Intern. My current interests revolve around low-level stuff, algorithms, ML, and any intersection of the three. 
 					</p>
 					<p className="mt-4">
 						In the past, I've dabbled in some <a className="underline" href="https://codeforces.com/profile/eyangch/">competitive programming</a>, ML projects, <a className="underline" href="https://ctftime.org/team/78193">cybersecurity</a> <a className="underline" href="https://ctftime.org/ctf/646/">tournaments</a>, and <a className="underline" href="https://doi.org/10.1016/j.dam.2024.11.022">math research</a>.
