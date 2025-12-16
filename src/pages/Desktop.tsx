@@ -168,6 +168,7 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
     };
 
     const touchStartHandler = (e: React.TouchEvent<HTMLDivElement>) => {
+        e.preventDefault();
         mouseDownHandler(e.touches[0]);
     }
 
@@ -176,6 +177,7 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
     }
 
     const touchMoveHandler = (e: TouchEvent) => {
+        e.preventDefault();
         mouseMoveHandler(e.touches[0]);
     }
 
@@ -229,10 +231,12 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
                     onTouchStart={touchStartHandler}
                 >
                     <img className="h-8 p-1" src={title}></img>
-                    <div className="h-8 flex mr-1 gap-1">
-                        <ImgButton height={6} pad={0} onclick={minimize} src={minGif} />
-                        {/* <ImgButton height={6} pad={0} onclick={maximize} src={maxGif} /> */}
-                        <ImgButton height={6} pad={0} onclick={close} src={xGif} />
+                    <div>
+                        <div className="h-8 flex ml-auto mr-1 gap-1">
+                            <ImgButton height={6} pad={0} onclick={minimize} src={minGif} />
+                            {/* <ImgButton height={6} pad={0} onclick={maximize} src={maxGif} /> */}
+                            <ImgButton height={6} pad={0} onclick={close} src={xGif} />
+                        </div>
                     </div>
                 </div>
                 {children}
@@ -450,7 +454,7 @@ const Desktop: React.FC = () => {
     }, [windows]);
 
 	return (
-		<div className="font-[w95fa] flex flex-col h-screen bg-blue-300 overflow-hidden">
+		<div className="font-[w95fa] flex flex-col h-dvh bg-blue-300 overflow-hidden">
             <div className="w-full overflow-hidden flex-grow">
                 <div className="absolute top-0 w-full h-full overflow-hidden">
                     <div className="flex md:flex-col">

@@ -11,15 +11,15 @@ const Home: React.FC = () => {
 						<div className="md:text-2xl text-xl">
 							Hi, I'm
 						</div>
-						<div className="md:text-6xl md:-ml-1 -ml-1 text-5xl">
+						<div className="md:text-6xl md:-ml-1 -ml-1 text-4xl">
 							Eric Yang
 						</div>
 					</div>
-					<div className="relative m-auto md:h-32 h-20 md:w-32 w-20 aspect-square">
+					<div className="relative m-auto md:h-32 h-16 md:w-32 w-16 aspect-square">
 						<Smile/>
 					</div>
 				</div>
-				<div className="md:my-3 text-wrap w-full md:text-base text-sm">
+				<div className="md:my-3 text-wrap w-full md:text-base text-xs">
 					<p className="mt-4">
 						Hello! I'm an undergrad at MIT, studying CS. Last summer, I'm was in NYC working at <a className="underline" href="https://withtandem.com/">Tandem</a> as an Engineering Intern. My current interests revolve around low-level stuff, algorithms, ML, and any intersection of the three. 
 					</p>
