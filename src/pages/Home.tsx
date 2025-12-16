@@ -21,7 +21,7 @@ const Home: React.FC = () => {
 				</div>
 				<div className="md:my-3 text-wrap w-full md:text-base text-xs">
 					<p className="mt-4">
-						Hello! I'm an undergrad at MIT, studying CS. Last summer, I'm was in NYC working at <a className="underline" href="https://withtandem.com/">Tandem</a> as an Engineering Intern. My current interests revolve around low-level stuff, algorithms, ML, and any intersection of the three. 
+						Hello! I'm an undergrad at MIT, studying CS. Last summer, I was in NYC working at <a className="underline" href="https://withtandem.com/">Tandem</a> as an Engineering Intern. My current interests revolve around low-level stuff, algorithms, ML, and any intersection of the three. 
 					</p>
 					<p className="mt-4">
 						In the past, I've dabbled in some <a className="underline" href="https://codeforces.com/profile/eyangch/">competitive programming</a>, ML projects, <a className="underline" href="https://ctftime.org/team/78193">cybersecurity</a> <a className="underline" href="https://ctftime.org/ctf/646/">tournaments</a>, and <a className="underline" href="https://doi.org/10.1016/j.dam.2024.11.022">math research</a>.
