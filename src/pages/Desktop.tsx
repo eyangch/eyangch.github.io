@@ -177,7 +177,9 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
     }
 
     const touchMoveHandler = (e: TouchEvent) => {
-        e.preventDefault();
+        if(mouseDown.current){
+            e.preventDefault();
+        }
         mouseMoveHandler(e.touches[0]);
     }
 
@@ -192,7 +194,7 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
         window.addEventListener("mouseup", mouseUpHandler);
         window.addEventListener("mousemove", mouseMoveHandler);
         window.addEventListener("touchend", touchUpHandler);
-        window.addEventListener("touchmove", touchMoveHandler);
+        window.addEventListener("touchmove", touchMoveHandler, { passive: false });
 
         return () => {
             window.removeEventListener("mouseup", mouseUpHandler);

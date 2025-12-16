@@ -2,19 +2,24 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
-import { Group, Mesh } from 'three';
+import * as THREE from '../utils/three-exports.ts';
 
 type ModelProps = {
-    scene: Group
+    scene: THREE.Group
 }
 
 const Model: React.FC<ModelProps> = ({ scene }) => {
     const [targetPos, setTargetPos] = useState([0, 0]);
 
+    const isMesh = (object: THREE.Object3D): object is THREE.Mesh => {
+        return object.type == "Mesh";
+    }
+
     useEffect(() => {
         scene.traverse((child) => {
-            if (child instanceof Mesh) {
-                child.material.color.set('rgb(0, 138, 255)');
+            if(isMesh(child)){
+                const mat = child.material as THREE.MeshStandardMaterial;
+                mat.color.set('rgb(0, 138, 255)');
             }
         });
     }, [scene]);
