@@ -88,11 +88,11 @@ const StartBar: React.FC<StartBarProps> = ({ items }) => {
     }, []);
 
     return (
-        <div className="absolute bottom-0 w-screen bg-neutral-300
-                        border-t-neutral-100 border-t-1 bg-neutral-300
-                        border-l-neutral-100 border-l-1
+        <div className="bottom-0 w-screen bg-neutral-300
+                        border-t-neutral-500 border-t-1 bg-neutral-300
+                        border-l-neutral-700 border-l-1
                         border-r-neutral-700 border-r-1
-                        border-b-neutral-700 border-b-1">
+                        border-b-neutral-700 border-b-1 z-[1000000000]">
             <div className="ml-1 flex justify-between">
                 <div className="flex gap-1">
                     <ImgButton height={8} pad={1} src={startGif} onclick={() => {window.location.href = '/'}}/>
@@ -143,7 +143,7 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
         e.preventDefault();
     };
 
-    const mouseDownHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const mouseDownHandler = (e: React.MouseEvent<HTMLDivElement> | React.Touch) => {
         initialPos.current = {
             "mouseX": e.pageX,
             "mouseY": e.pageY,
@@ -153,12 +153,11 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
         mouseDown.current = true;
     };
 
-    const mouseUpHandler = (_: MouseEvent) => {
+    const mouseUpHandler = (_: MouseEvent | Touch) => {
         mouseDown.current = false;
     }
 
-    const mouseMoveHandler = (e: MouseEvent) => {
-        e.preventDefault();
+    const mouseMoveHandler = (e: MouseEvent | Touch) => {
         if(mouseDown.current){
             const diffX = e.pageX - initialPos.current.mouseX;
             const diffY = e.pageY - initialPos.current.mouseY;
@@ -167,6 +166,18 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
             setTranslateY(initialPos.current.windowY + diffY);
         }
     };
+
+    const touchStartHandler = (e: React.TouchEvent<HTMLDivElement>) => {
+        mouseDownHandler(e.touches[0]);
+    }
+
+    const touchUpHandler = (e: TouchEvent) => {
+        mouseUpHandler(e.touches[0]);
+    }
+
+    const touchMoveHandler = (e: TouchEvent) => {
+        mouseMoveHandler(e.touches[0]);
+    }
 
     const updateZIndex = () => {
         const zidxval = Date.now() - loadTime;
@@ -178,10 +189,14 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
 
         window.addEventListener("mouseup", mouseUpHandler);
         window.addEventListener("mousemove", mouseMoveHandler);
+        window.addEventListener("touchend", touchUpHandler);
+        window.addEventListener("touchmove", touchMoveHandler);
 
         return () => {
             window.removeEventListener("mouseup", mouseUpHandler);
             window.removeEventListener("mousemove", mouseMoveHandler);
+            window.removeEventListener("touchend", touchUpHandler);
+            window.removeEventListener("touchmove", touchMoveHandler);
         }
     }, [])
 
@@ -195,7 +210,9 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
                 ),
                 zIndex: zIndex
             }}
-            className={`absolute p-1 w-full h-full
+            className={`absolute p-1 
+                    md:w-2/3 md:h-9/10 md:top-1/30 md:left-1/6
+                    w-7/8 h-4/5 top-1/8 left-1/16
                     border-t-neutral-100 border-t-3 bg-neutral-300
                     border-l-neutral-100 border-l-3
                     border-r-neutral-700 border-r-3
@@ -209,6 +226,7 @@ const Browser: React.FC<BrowserProps> = ({ id, minimize, close, minimized, delet
                     className="flex bg-blue-400 justify-between mb-1"
                     onDragStart={dragStartHandler}
                     onMouseDown={mouseDownHandler}
+                    onTouchStart={touchStartHandler}
                 >
                     <img className="h-8 p-1" src={title}></img>
                     <div className="h-8 flex mr-1 gap-1">
@@ -233,6 +251,7 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, ondblclick }) =>
     return (
         <div className="w-20 m-4 border-1 border-blue-300 hover:border-blue-500 hover:bg-blue-400 active:bg-blue-500"
             onDoubleClick={ondblclick}
+            onTouchEnd={ondblclick}
         >
             <img className="mx-auto w-12" src={icon} />
             <div className="text-center">{label}</div>
@@ -243,44 +262,44 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, ondblclick }) =>
 const FileExplorer: React.FC = () => {
     return (
         <div className="flex overflow-hidden gap-2 border border-gray-400 shadow-lg p-1 bg-gray-100">
-            <div className="flex-none w-48 border border-white border-b-gray-400 border-r-gray-400 bg-white p-1">
+            <div className="flex-none md:w-48 w-30 border border-white border-b-gray-400 border-r-gray-400 bg-white p-1">
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
                     <span className="w-2"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">/</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
-                    <span className="w-6"></span> 
+                    <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Program Data</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
-                    <span className="w-6"></span> 
+                    <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Program Files</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
-                    <span className="w-6"></span> 
+                    <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Temp</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
-                    <span className="w-6"></span> 
+                    <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Users</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
-                    <span className="w-10"></span> 
+                    <span className="md:w-10 w-4"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">eyangch</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm bg-neutral-300`}>
-                    <span className="w-14"></span> 
+                    <span className="md:w-14 w-5"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Projects</span>
                 </div>
                 <div className={`flex items-center cursor-default py-0.5 text-sm`}>
-                    <span className="w-6"></span> 
+                    <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Windows</span>
                 </div>
@@ -289,29 +308,29 @@ const FileExplorer: React.FC = () => {
             <div className="max-h-full overflow-scroll flex-grow border border-white border-b-gray-400 border-r-gray-400 bg-white p-3">
                 <p className="font-bold text-5xl">Projects</p>
                 <hr className="my-2 border-t border-gray-200" />
-                <div className="grid grid-cols-2 gap-2">
-                    <div className="p-2 bg-neutral-300">
-                        <img className="w-1/3 mb-2 border-1" src={hallucinateImg} />
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-2">
+                    <div className="p-4 bg-neutral-300">
+                        <img className="md:w-1/4 w-1/2 mb-2 border-1" src={hallucinateImg} />
                         <p className="font-bold underline text-lg"><a href="https://github.com/eyangch/hallucinate/">Hallucinate</a></p>
                         <p>Simulating the video game QWOP in realtime on the browser using neural networks. Uses an autoencoder to compress gamestates and an LSTM to predict future states. Noise is added during training to improve stability. Play the game <a className="underline" href="https://eyangch.github.io/hallucinate/">here</a>!</p>
                     </div>
-                    <div className="p-2 bg-neutral-300">
-                        <img className="w-1/3 mb-2 border-1" src={discordImg} />
+                    <div className="p-4 bg-neutral-300">
+                        <img className="md:w-1/4 w-1/2 mb-2 border-1" src={discordImg} />
                         <p className="font-bold underline text-lg"><a href="https://github.com/eyangch/discord-graph/">Discord Graph</a></p>
                         <p>Creates a graph visualization of your friends' connections to each other on Discord. Try it out <a className="underline" href="https://eyangch.github.io/discord-graph/">here</a>!</p>
                     </div>
-                    <div className="p-2 bg-neutral-300">
-                        <img className="w-1/3 mb-2 border-1" src={dlImg} />
+                    <div className="p-4 bg-neutral-300">
+                        <img className="md:w-1/4 w-1/2 mb-2 border-1" src={dlImg} />
                         <p className="font-bold underline text-lg"><a href="http://mc.eyangch.me/static/dl/index.html">Noise Resistant Adversarial Images in VLMs</a></p>
                         <p>Final project for 6.7960 (Deep Learning) at MIT. Some interesting things about training adversarial images to be noise resistant.</p>
                     </div>
-                    <div className="p-2 bg-neutral-300">
-                        <img className="w-1/3 mb-2 border-1" src={bfImg} />
+                    <div className="p-4 bg-neutral-300">
+                        <img className="md:w-1/4 w-1/2 mb-2 border-1" src={bfImg} />
                         <p className="font-bold underline text-lg"><a href="https://ide.usaco.guide/O6lu6OYDARRsCkPGwjJ">Fast BF Interpreter</a></p>
                         <p>First place for the HackMIT 2024 BF Interpreter <a className="underline" href="https://dayof.hackmit.org/challenges">Sponsor Challenge</a>, winning $1000 for the fastest BF interpreter.</p>
                     </div>
-                    <div className="p-2 bg-neutral-300">
-                        <img className="w-1/3 mb-2 border-1" src={noTrustImg} />
+                    <div className="p-4 bg-neutral-300">
+                        <img className="md:w-1/4 w-1/2 mb-2 border-1" src={noTrustImg} />
                         <p className="font-bold underline text-lg"><a href="https://github.com/eyangch/no-trust/">No Trust</a></p>
                         <p>Creates a layer of authentication over any service using TCP connections by proxying connections using Python aiohttp and asyncio. Complete with a web interface and user system.</p>
                     </div>
@@ -431,58 +450,60 @@ const Desktop: React.FC = () => {
     }, [windows]);
 
 	return (
-		<div className="font-[w95fa] relative h-screen bg-blue-300 overflow-hidden">
-            <div className="grid">
-                <DesktopIcon icon={browserIconGif} label="Homepage" ondblclick={newBrowser()}></DesktopIcon>
-                <DesktopIcon icon={folderGif} label="Projects" ondblclick={newFileExplorer()}></DesktopIcon>
-            </div>
-            <div className="absolute w-2/3 h-7/8 left-1/6 top-1/20">
-                {
-                    ...windows.map((window, _) => (
-                        <Browser 
-                            id={window.id}
-                            minimize={window.toggle}
-                            maximize={() => {console.log("MAX")}}
-                            close={deleteIdFn(window.id)}
-                            minimized={window.minimized}
-                            deleted={window.deleted}
-                            title={window.title}
-                            setzidx={setIdZidxFn(window.id)}
-                            url={window.url!}
-                        >
-                            {
-                                (() => {
-                                    if(window.element == "browser"){
-                                        return <>
-                                            <div className="flex">
-                                                <div className="my-auto mr-2">
-                                                    Address:
+		<div className="font-[w95fa] flex flex-col h-screen bg-blue-300 overflow-hidden">
+            <div className="w-full overflow-hidden flex-grow">
+                <div className="absolute top-0 w-full h-full overflow-hidden">
+                    <div className="flex md:flex-col">
+                        <DesktopIcon icon={browserIconGif} label="Homepage" ondblclick={newBrowser()}></DesktopIcon>
+                        <DesktopIcon icon={folderGif} label="Projects" ondblclick={newFileExplorer()}></DesktopIcon>
+                    </div>
+                    {
+                        ...windows.map((window, _) => (
+                            <Browser 
+                                id={window.id}
+                                minimize={window.toggle}
+                                maximize={() => {console.log("MAX")}}
+                                close={deleteIdFn(window.id)}
+                                minimized={window.minimized}
+                                deleted={window.deleted}
+                                title={window.title}
+                                setzidx={setIdZidxFn(window.id)}
+                                url={window.url!}
+                            >
+                                {
+                                    (() => {
+                                        if(window.element == "browser"){
+                                            return <>
+                                                <div className="flex">
+                                                    <div className="my-auto mr-2">
+                                                        Address:
+                                                    </div>
+                                                    <div className="px-1 mb-1 grow
+                                                            border-t-neutral-700 border-t-3 bg-neutral-300
+                                                            border-l-neutral-700 border-l-3
+                                                            border-r-neutral-100 border-r-3
+                                                            border-b-neutral-100 border-b-3">
+                                                        <div className="my-auto">https://eyangch.me{window.url}</div>
+                                                    </div>
                                                 </div>
-                                                <div className="px-1 mb-1 grow
-                                                        border-t-neutral-700 border-t-3 bg-neutral-300
-                                                        border-l-neutral-700 border-l-3
-                                                        border-r-neutral-100 border-r-3
-                                                        border-b-neutral-100 border-b-3">
-                                                    <div className="my-auto">https://eyangch.me{window.url}</div>
+                                                <div className="bg-white grow overflow-scroll">
+                                                    {/* <iframe ref={iframeRef} onLoad={iframeLoadHandler} className="w-full h-full" src="/"></iframe> */}
+                                                    <Home />
                                                 </div>
-                                            </div>
-                                            <div className="bg-white grow">
-                                                {/* <iframe ref={iframeRef} onLoad={iframeLoadHandler} className="w-full h-full" src="/"></iframe> */}
-                                                <Home />
-                                            </div>
-                                        </>
-                                    }
-                                    if(window.element == "fileExplorer"){
-                                        return <>
-                                            <FileExplorer />
-                                        </>
-                                    }
-                                    return "null"
-                                })()
-                            }
-                            </Browser>
-                    ))
-                }
+                                            </>
+                                        }
+                                        if(window.element == "fileExplorer"){
+                                            return <>
+                                                <FileExplorer />
+                                            </>
+                                        }
+                                        return "null"
+                                    })()
+                                }
+                                </Browser>
+                        ))
+                    }
+                </div>
             </div>
 			<StartBar items={windows.filter((window, _) => !window.deleted)} />
 		</div>

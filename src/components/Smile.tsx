@@ -2,10 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
-import * as THREE from 'three';
+import { Group, Mesh } from 'three';
 
 type ModelProps = {
-    scene: THREE.Group
+    scene: Group
 }
 
 const Model: React.FC<ModelProps> = ({ scene }) => {
@@ -13,7 +13,7 @@ const Model: React.FC<ModelProps> = ({ scene }) => {
 
     useEffect(() => {
         scene.traverse((child) => {
-            if (child instanceof THREE.Mesh) {
+            if (child instanceof Mesh) {
                 child.material.color.set('rgb(0, 138, 255)');
             }
         });
@@ -30,8 +30,8 @@ const Model: React.FC<ModelProps> = ({ scene }) => {
     }, []);
 
     useFrame((_0, _1) => {
-        scene.rotation.x = (scene.rotation.x * 11 + targetPos[0]) / 12;
-        scene.rotation.y = (scene.rotation.y * 11 + targetPos[1]) / 12;
+        scene.rotation.x = (scene.rotation.x * 0 + targetPos[0]) / 1;
+        scene.rotation.y = (scene.rotation.y * 0 + targetPos[1]) / 1;
     });
 
     return (

@@ -5,21 +5,21 @@ const Home: React.FC = () => {
 
 	return (
 		<div className="flex h-full font-[Onest]">
-			<div className="flex flex-col m-auto sm:w-2xl w-sm sm:p-12 p-8 rounded-lg bg-blue-300">
+			<div className="flex flex-col m-auto xl:w-2xl lg:w-xl w-7/8 md:p-12 p-6 rounded-lg bg-blue-300">
 				<div className="flex flex-row shrink-0">
-					<div className="flex flex-col mt-4 mb-4">
-						<div className="sm:text-2xl text-xl">
+					<div className="flex flex-col md:my-4 my-2">
+						<div className="md:text-2xl text-xl">
 							Hi, I'm
 						</div>
-						<div className="sm:text-6xl sm:-ml-1 -ml-1 text-5xl">
+						<div className="md:text-6xl md:-ml-1 -ml-1 text-5xl">
 							Eric Yang
 						</div>
 					</div>
-					<div className="relative m-auto sm:h-32 h-20 sm:w-32 w-20 aspect-square">
+					<div className="relative m-auto md:h-32 h-20 md:w-32 w-20 aspect-square">
 						<Smile/>
 					</div>
 				</div>
-				<div className="mt-3 mb-3 text-wrap w-full">
+				<div className="md:my-3 text-wrap w-full md:text-base text-sm">
 					<p className="mt-4">
 						Hello! I'm an undergrad at MIT, studying CS. Last summer, I'm was in NYC working at <a className="underline" href="https://withtandem.com/">Tandem</a> as an Engineering Intern. My current interests revolve around low-level stuff, algorithms, ML, and any intersection of the three. 
 					</p>
