@@ -268,43 +268,43 @@ const DesktopIcon: React.FC<DesktopIconProps> = ({ icon, label, ondblclick }) =>
 const FileExplorer: React.FC = () => {
     return (
         <div className="flex overflow-hidden gap-2 border border-gray-400 shadow-lg p-1 bg-gray-100">
-            <div className="flex-none md:w-48 w-30 border border-white border-b-gray-400 border-r-gray-400 bg-white p-1">
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+            <div className="flex-none md:w-48 w-24 border border-white border-b-gray-400 border-r-gray-400 bg-white p-1 md:text-sm text-xs">
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="w-2"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">/</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Program Data</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Program Files</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Temp</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Users</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="md:w-10 w-4"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">eyangch</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm bg-neutral-300`}>
+                <div className={`flex items-center cursor-default py-0.5 bg-neutral-300`}>
                     <span className="md:w-14 w-5"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Projects</span>
                 </div>
-                <div className={`flex items-center cursor-default py-0.5 text-sm`}>
+                <div className={`flex items-center cursor-default py-0.5`}>
                     <span className="md:w-6 w-3"></span> 
                     <span className="mr-1"><img className="h-4" src={folderGif} /></span>
                     <span className="truncate">Windows</span>
